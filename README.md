@@ -1,6 +1,9 @@
 # Description
 Simple Go program to read a CSV file regarding financial transactions over a time period from the ING bank and insert into a database.
 
+## Install
+Run `go install`.
+
 ## Run
 Download ING csv from Mijn ING and put it in your `${HOME}` directory. Next do:
 

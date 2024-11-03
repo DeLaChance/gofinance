@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"log"
+	"internal/io"
 )
 
 func main() {
@@ -10,6 +11,7 @@ func main() {
 		log.Fatal("Needs exactly 1 argument")
 	}
 
-	csvFile := os.Args[1]
-	log.Println("Reading from CSV file: ", csvFile)
+	csvFileName := os.Args[1]
+	log.Println("Reading from CSV file: ", csvFileName)
+	io.ReadCsv(csvFileName)
 }
