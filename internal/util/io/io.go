@@ -24,11 +24,5 @@ func ReadCsv(csvFileName string) [][]string {
         log.Println("Error reading records") 
     } 
       
-    // Loop to iterate through  
-    // and print each of the string slice 
-    for _, eachrecord := range records { 
-        log.Println(eachrecord) 
-    } 
-
 	return records 
 }

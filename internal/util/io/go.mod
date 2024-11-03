@@ -1,3 +1,3 @@
-module gofinance/io
+module io 
 
 go 1.18
