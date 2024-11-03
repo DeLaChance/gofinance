@@ -1,6 +1,9 @@
 # Description
 Simple Go program to read a CSV file regarding financial transactions over a time period from the ING bank and insert into a database.
 
+## Structure
+Repo structure inspired from [here](https://medium.com/evendyne/getting-started-with-go-project-structure-ab8814ded9c3).
+
 ## Install
 Run `go install`.
 

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 	"log"
-	"internal/io"
+	"gofinance/util/io"
 )
 
 func main() {

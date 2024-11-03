@@ -1,7 +1,7 @@
 module main
 
-require internal/io v1.0.0
+require gofinance/util/io v1.0.0
 
-replace internal/io => ./internal/io
+replace gofinance/util/io => ./internal/util/io
 
 go 1.18
