@@ -59,7 +59,7 @@ func fromCsvSingle(csvLine []string) *BankTransaction {
 		transactionDate, err := parseDate(csvLine[0])
 		if (err == nil) {
 			return &BankTransaction{
-				date: transactionDate, 
+				date: transactionDate.AddDate(0, 0, 1), // Random add a day 
 				description: csvLine[1], 
 				account: csvLine[2], 
 				amount: parseAmount(csvLine[6], creditType), 
