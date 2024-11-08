@@ -4,7 +4,7 @@ import (
 	"os"
 	"log"
 	"gofinance/util/io"
-	"gofinance/domain/banktransaction"
+	"gofinance/banktransaction"
 )
 
 func main() {
