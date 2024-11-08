@@ -5,10 +5,13 @@ import (
 	"strconv"
 	"strings"
 	"fmt"
+	"time"
+	"gitlab.com/metakeule/fmtdate"
+	"os"
 )
 
 type BankTransaction struct {
-	date string 
+	date time.Time 
 	description string
 	account string 
 	amount float64 // May be positive or negative
@@ -40,6 +43,8 @@ func FromCsv(csvLines [][]string) []BankTransaction {
 		transaction := fromCsvSingle(csvLine)
 		if (transaction != nil) {
 			transactions = append(transactions, *transaction)
+		} else {
+			os.Exit(1)
 		}
     } 
 
@@ -48,17 +53,22 @@ func FromCsv(csvLines [][]string) []BankTransaction {
 
 func fromCsvSingle(csvLine []string) *BankTransaction {
 	creditType := transactionTypeFromString(csvLine[5]) // Credit or Debit
+
 	if (creditType != UndefinedTransactionType) {
-		return &BankTransaction{
-			date: csvLine[0], // TODO: cast to date object 
-			description: csvLine[1], 
-			account: csvLine[2], 
-			amount: parseAmount(csvLine[6], creditType), 
-			remarks: csvLine[8],
+		
+		transactionDate, err := parseDate(csvLine[0])
+		if (err == nil) {
+			return &BankTransaction{
+				date: transactionDate, 
+				description: csvLine[1], 
+				account: csvLine[2], 
+				amount: parseAmount(csvLine[6], creditType), 
+				remarks: csvLine[8],
+			}
 		}
-	} else {
-		return nil
 	}
+
+	return nil
 }
 
 func parseAmount(amountStringValue string, creditType BankTransactionType) float64 {
@@ -84,4 +94,8 @@ func transactionTypeFromString(transactionType string) BankTransactionType {
 	} else {
 		return UndefinedTransactionType;
 	}
+}
+
+func parseDate(transactionDate string) (time.Time, error) {
+	return fmtdate.Parse("YYYYMMDD", transactionDate)
 }
