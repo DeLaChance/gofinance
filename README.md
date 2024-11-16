@@ -15,7 +15,6 @@ To build:
 To run:
 `sudo docker run -p 5432:5432 -e POSTGRES_PASSWORD="atreides" --detach gofinancedb`
 
-
 ### Go code
 Download ING csv from Mijn ING and put it in your `${HOME}` directory. Next do:
 
@@ -23,6 +22,8 @@ Download ING csv from Mijn ING and put it in your `${HOME}` directory. Next do:
 
 Be careful with your personal data :). 
 
+## Test
+`go test gofinance/banktransaction`
+
 ## Steps
 1. Label data 
-2. Write unit test 
