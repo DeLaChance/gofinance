@@ -13,11 +13,10 @@ func main() {
 	}
 
 	csvFileName := os.Args[1]
+	
 	log.Println("Reading from CSV file: ", csvFileName)
 	csvLines := io.ReadCsv(csvFileName)
 
 	transactions := banktransaction.FromCsv(csvLines)
-	for _, transaction := range transactions {
-		log.Println(transaction.ToString())
-	}
+	banktransaction.InsertIntoDatabase(transactions)	
 }

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"time"
 	"gitlab.com/metakeule/fmtdate"
-	"os"
 )
 
 type BankTransaction struct {
@@ -32,21 +31,25 @@ func (this BankTransaction) ToString() string {
 
 func FromCsv(csvLines [][]string) []BankTransaction {
 	
-	transactions := make([]BankTransaction, len(csvLines))
+	transactions := make([]BankTransaction, 0)
+	successCount := 0
+	failCount := 0
 
     for index, csvLine := range csvLines { 
 		if (index == 0) {
 			continue;
 		}
 
-        log.Printf("Processing line %d - %s", index, csvLine) 
 		transaction := fromCsvSingle(csvLine)
 		if (transaction != nil) {
 			transactions = append(transactions, *transaction)
+			successCount += 1
 		} else {
-			os.Exit(1)
+			failCount += 1
 		}
     } 
+	
+	log.Printf("Finished processing transactions from CSV file: success=%d,fail=%d", successCount, failCount) 
 
 	return transactions
 }

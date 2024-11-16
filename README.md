@@ -8,12 +8,21 @@ Repo structure inspired from [here](https://medium.com/evendyne/getting-started-
 Run `go install`.
 
 ## Run
+### DB 
+To build:
+`sudo docker build --progress=plain . -t gofinancedb`
+
+To run:
+`sudo docker run -p 5432:5432 -e POSTGRES_PASSWORD="atreides" --detach gofinancedb`
+
+
+### Go code
 Download ING csv from Mijn ING and put it in your `${HOME}` directory. Next do:
 
 `go run . ~/ING_transactions_2024.csv` if you named your file `ING_transactions_2024.csv`.
 
+Be careful with your personal data :). 
+
 ## Steps
-1. Read a file at a CLI parameter
-2. Write a class for Transaction & print file.
-3. Connect to DB.
-4. Insert into DB.
+1. Label data 
+2. Write unit test 
