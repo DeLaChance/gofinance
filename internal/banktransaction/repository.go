@@ -33,11 +33,11 @@ func InsertIntoDatabase(transactions []BankTransaction) error {
  		
 		valueArgs = append(valueArgs, t.date)
 		valueArgs = append(valueArgs, t.description)
-		valueArgs = append(valueArgs, t.account)
+		valueArgs = append(valueArgs, t.account[:len(t.account)-3] + "***")
 		valueArgs = append(valueArgs, t.amount)
 
-		lengthOfRemarks := min(len(t.remarks), 128)
-		valueArgs = append(valueArgs, t.remarks[:lengthOfRemarks])
+		lengthOfRemarks := min(len(t.remarks), 30)
+		valueArgs = append(valueArgs, t.remarks[:lengthOfRemarks] + "...")
 
 		i++
 	}
